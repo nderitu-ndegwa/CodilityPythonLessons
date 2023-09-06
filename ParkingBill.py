@@ -11,13 +11,13 @@ def solution(E, L):
 
     parking_bill = 2
     
-    if parked_full_hours > 0:
+    if parked_full_hours > 0 or (parked_minutes // 60) < 1:
         parking_bill += 3
         
     if parked_full_hours > 1:
         parking_bill += (parked_full_hours - 1) * 4
         
-    if rem_minutes > 0:
+    if rem_minutes > 0 and parked_full_hours > 1:
         parking_bill += 4
         
     return int(parking_bill)
