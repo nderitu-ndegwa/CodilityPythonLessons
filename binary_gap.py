@@ -22,6 +22,6 @@ def binary_gap (n) :
             prev_num = n_bin
         return max_count
 
-    ##return binary[::-1]
+    return binary[::-1]
  
     
