@@ -32,8 +32,8 @@ In your solution, focus on correctness. The performance of your solution will no
 from datetime import datetime
 
 def solution(E, L):
-    entry_time = datetime.strptime(E, '%H:%M')
-    exit_time = datetime.strptime(L, '%H:%M')
+    entry_time = datetime.strptime(E, '%HH:%MM')
+    exit_time = datetime.strptime(L, '%HH:%MM')
     
     #Get total minutes
     parked_minutes = (exit_time - entry_time).seconds / 60
