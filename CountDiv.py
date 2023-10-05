@@ -27,4 +27,3 @@ def solution(A, B, K):
     # Return the count of integers divisible by K in the range [A..B]
     return count_B - count_A
 
-# Compare this snippet from Codility/GenomicRangeQuery.py:
