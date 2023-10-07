@@ -30,22 +30,36 @@ Write an efficient algorithm for the following assumptions:
         each element of array A is an integer within the range [0..2,147,483,647].
 
 '''
-
 def solution(A):
-    n = len(A)
-    left_endpoints = [0] * n
-    right_endpoints = [0] * n
-    for i in range(n):
-        left_endpoints[i] = i - A[i]
-        right_endpoints[i] = i + A[i]
-    left_endpoints.sort()
-    right_endpoints.sort()
-    count = 0
-    j = 0
-    for i in range(n):
-        while j < n and right_endpoints[j] < left_endpoints[i]:
-            j += 1
-        count += j - i - 1
-        if count > 10000000:
+    N = len(A)
+
+    # Create lists to store the starting and ending points of each disc
+    starts = [0] * N
+    ends = [0] * N
+
+    for i in range(N):
+        left = max(0, i - A[i])
+        right = min(N - 1, i + A[i])
+
+        starts[left] += 1
+        ends[right] += 1
+
+    intersections = 0  # Variable to count the number of intersections
+    active_discs = 0   # Variable to keep track of active discs at each point
+
+    for i in range(N):
+        # For each disc, add the number of active discs that start after the current disc
+        intersections += active_discs * starts[i]
+
+        # Update the number of active discs
+        active_discs += starts[i]
+
+        # Decrease the number of active discs when a disc ends
+        active_discs -= ends[i]
+
+        # Check if the number of intersections exceeds 10,000,000
+        if intersections > 10_000_000:
             return -1
-    return count
+
+    return intersections
+
