@@ -1,0 +1,19 @@
+def solution(S):
+    stack = []
+    for char in S:
+        if char in ['(', '{', '[']:
+            stack.append(char)
+        else:
+            if not stack:
+                return 0
+            if char == ')' and stack[-1] != '(':
+                return 0
+            elif char == '}' and stack[-1] != '{':
+                return 0
+            elif char == ']' and stack[-1] != '[':
+                return 0
+            stack.pop()
+    if not stack:
+        return 1
+    else:
+        return 0
