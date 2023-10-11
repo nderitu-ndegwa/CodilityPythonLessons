@@ -1,0 +1,41 @@
+def solution(A):
+    N = len(A)
+    
+    # Find peaks
+    peaks = [0] * N
+    for i in range(1, N - 1):
+        if A[i] > max(A[i - 1], A[i + 1]):
+            peaks[i] = 1
+    
+    # Count the number of peaks
+    peak_count = sum(peaks)
+    
+    if peak_count == 0:
+        # No peaks, no flags can be set
+        return 0
+    
+    # Binary search for the maximum number of flags
+    left, right = 1, peak_count
+    result = 0
+    
+    while left <= right:
+        k = (left + right) // 2
+        flags_set = 0
+        i = 0
+        
+        while i < N and flags_set < k:
+            if peaks[i] == 1:
+                flags_set += 1
+                i += k
+            else:
+                i += 1
+        
+        if flags_set >= k:
+            result = k
+            left = k + 1
+        else:
+            right = k - 1
+    
+    return result
+
+
