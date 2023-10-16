@@ -63,20 +63,18 @@ Write an efficient algorithm for the following assumptions:
 def solution(A):
     N = len(A)
     
-    # Find peaks
+ 
     peaks = [0] * N
     for i in range(1, N - 1):
         if A[i] > max(A[i - 1], A[i + 1]):
             peaks[i] = 1
     
-    # Count the number of peaks
+   
     peak_count = sum(peaks)
     
     if peak_count == 0:
-        # No peaks, no flags can be set
         return 0
     
-    # Binary search for the maximum number of flags
     left, right = 1, peak_count
     result = 0
     

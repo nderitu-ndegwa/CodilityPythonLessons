@@ -33,7 +33,6 @@ Write an efficient algorithm for the following assumptions:
 '''
 
 def solution(A):
-    # Phase 1: Find a candidate for the dominator
     candidate = None
     count = 0
 
@@ -46,8 +45,7 @@ def solution(A):
                 count += 1
             else:
                 count -= 1
-
-    # Phase 2: Check if the candidate is the dominator
+                
     count_candidate = A.count(candidate)
     if count_candidate > len(A) // 2:
         return A.index(candidate)

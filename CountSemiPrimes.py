@@ -42,7 +42,6 @@ Write an efficient algorithm for the following assumptions:
 
 '''
 def solution(N, P, Q):
-    # Generate a list of primes up to N
     primes = [True] * (N+1)
     primes[0] = primes[1] = False
     for i in range(2, int(N**0.5)+1):
@@ -51,7 +50,6 @@ def solution(N, P, Q):
                 primes[j] = False
     prime_list = [i for i in range(N+1) if primes[i]]
 
-    # Generate a list of all possible products of two primes in the list generated in step 1
     semiprimes = []
     for i in range(len(prime_list)):
         for j in range(i, len(prime_list)):
@@ -60,10 +58,8 @@ def solution(N, P, Q):
                 break
             semiprimes.append(semiprime)
 
-    # Sort the list generated in step 2
     semiprimes.sort()
 
-    # For each query (P[K], Q[K]), use binary search to count the number of semiprimes in the range
     result = []
     for i in range(len(P)):
         count = 0

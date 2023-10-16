@@ -40,17 +40,14 @@ Write an efficient algorithm for the following assumptions:
 '''
 
 def solution(S, P, Q):
-    # Create an array to store the results for each query
     result = []
 
     for i in range(len(P)):
         start = P[i]
         end = Q[i]
 
-        # Extract the substring from start to end
         subsequence = S[start:end + 1]
 
-        # Check for the presence of nucleotides in the subsequence
         if 'A' in subsequence:
             result.append(1)
         elif 'C' in subsequence:

@@ -18,12 +18,9 @@ Write an efficient algorithm for the following assumptions:
 '''
 
 def solution(A, B, K):
-    # Count of integers divisible by K in the range [0..B]
     count_B = B // K
-
-    # Count of integers divisible by K in the range [0..A-1]
+    
     count_A = (A - 1) // K if A > 0 else 0
 
-    # Return the count of integers divisible by K in the range [A..B]
     return count_B - count_A
 

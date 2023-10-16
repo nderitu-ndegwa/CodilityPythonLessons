@@ -32,8 +32,6 @@ Write an efficient algorithm for the following assumptions:
 '''
 def solution(A):
     N = len(A)
-
-    # Create lists to store the starting and ending points of each disc
     starts = [0] * N
     ends = [0] * N
 
@@ -44,20 +42,13 @@ def solution(A):
         starts[left] += 1
         ends[right] += 1
 
-    intersections = 0  # Variable to count the number of intersections
-    active_discs = 0   # Variable to keep track of active discs at each point
+    intersections = 0 
+    active_discs = 0   
 
     for i in range(N):
-        # For each disc, add the number of active discs that start after the current disc
         intersections += active_discs * starts[i]
-
-        # Update the number of active discs
         active_discs += starts[i]
-
-        # Decrease the number of active discs when a disc ends
         active_discs -= ends[i]
-
-        # Check if the number of intersections exceeds 10,000,000
         if intersections > 10_000_000:
             return -1
 

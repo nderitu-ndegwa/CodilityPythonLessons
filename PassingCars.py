@@ -43,16 +43,14 @@ Write an efficient algorithm for the following assumptions:
 
 
 def solution(A):
-    eastward_cars = 0  # Count of eastward cars
-    passing_pairs = 0  # Count of passing pairs
+    eastward_cars = 0  
+    passing_pairs = 0  
 
     for car_direction in A:
-        if car_direction == 0:  # Eastward car
+        if car_direction == 0:  
             eastward_cars += 1
-        else:  # Westward car
+        else:  
             passing_pairs += eastward_cars
-
-            # Check for exceeding the limit
             if passing_pairs > 1000000000:
                 return -1
 

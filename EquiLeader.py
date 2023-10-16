@@ -47,7 +47,7 @@ Write an efficient algorithm for the following assumptions:
 def solution(A):
     N = len(A)
 
-    # Find the leader of the whole array (if it exists)
+   
     candidate = None
     count = 0
 
@@ -61,10 +61,10 @@ def solution(A):
             else:
                 count -= 1
 
-    # Check if the candidate is the leader
+    
     count_candidate = A.count(candidate)
     if count_candidate <= N // 2:
-        return 0  # No leader, so no equi leaders
+        return 0  
 
     leader = candidate
 

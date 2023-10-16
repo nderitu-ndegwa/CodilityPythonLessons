@@ -22,10 +22,8 @@ Write an efficient algorithm for the following assumptions:
 '''
 
 def solution(A):
-    # Removing duplicates
     unique_positive_numbers = set(x for x in A if x > 0)
 
-    # Checking for the smallest positive integer
     smallest_positive = 1
     while smallest_positive in unique_positive_numbers:
         smallest_positive += 1
