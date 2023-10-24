@@ -60,24 +60,32 @@ A[K] ≤ B[K].
 """
 
 def solution(A, B, C):
-    def is_possible(nails):
-        nailed_planks = [False] * len(A)
-        for i in range(nails):
-            for j in range(len(A)):
-                if not nailed_planks[j] and A[j] <= C[i] <= B[j]:
-                    nailed_planks[j] = True
-        return all(nailed_planks)
+    N = len(A)
+    M = len(C)
+    
+    planks = sorted(zip(A, B), key=lambda x: x[1])
+    nails = sorted(enumerate(C), key=lambda x: x[1])
+    
+    result = -1  
 
-    lower_bound = 1
-    upper_bound = len(C)
-    result = -1
-
-    while lower_bound <= upper_bound:
-        mid = (lower_bound + upper_bound) // 2
-        if is_possible(mid):
-            upper_bound = mid - 1
-            result = mid
-        else:
-            lower_bound = mid + 1
-
-    return result
+    for i, nail in nails:
+        left, right = 0, N - 1
+        last_plank = -1 
+        
+        while left <= right:
+            mid = (left + right) // 2
+            plank_start, plank_end = planks[mid]
+            
+            if plank_start <= nail <= plank_end:
+                last_plank = mid
+                left = mid + 1
+            elif plank_start > nail:
+                right = mid - 1
+            else:
+                left = mid + 1
+        
+        if last_plank == -1:
+            return -1  
+        result = max(result, last_plank)
+    
+    return result + 1  
